@@ -571,7 +571,7 @@
   </footer>
 
   <script>
-    // Waitlist form → formsubmit.co (emails john@jobpakt.com on every signup)
+    // Waitlist form → formsubmit.co (emails john@jobpakt.com) + Jobpakt platform (dogfooding)
     document.getElementById('waitlistForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value;
@@ -580,7 +580,8 @@
       btn.textContent = 'Submitting...';
       btn.disabled = true;
 
-      fetch('https://formsubmit.co/ajax/john@jobpakt.com', {
+      // 1. Email notification to John via formsubmit.co
+      const emailNotify = fetch('https://formsubmit.co/ajax/john@jobpakt.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
@@ -589,14 +590,17 @@
           _subject: '🔥 New Jobpakt Waitlist Signup!',
           _template: 'table'
         })
-      })
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('waitlistForm').style.display = 'none';
-        document.getElementById('successMsg').style.display = 'block';
-      })
-      .catch(() => {
-        // Fallback: show success anyway (email may still go through)
+      }).catch(() => {});
+
+      // 2. Dogfooding: Create lead in Jobpakt platform (Customer Zero)
+      const platformLead = fetch('https://home-services-platform-production.up.railway.app/api/webhooks/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, phone: phone || undefined })
+      }).catch(() => {});
+
+      // Wait for both, show success regardless
+      Promise.allSettled([emailNotify, platformLead]).then(() => {
         document.getElementById('waitlistForm').style.display = 'none';
         document.getElementById('successMsg').style.display = 'block';
       });
