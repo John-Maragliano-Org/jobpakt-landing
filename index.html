@@ -442,7 +442,7 @@
   <!-- NAV -->
   <nav>
     <img src="assets/icon-original.jpg" alt="Jobpakt" class="nav-logo">
-    <a href="#waitlist" class="nav-cta">Join the Founding 50</a>
+    <a href="#waitlist" class="nav-cta">Join the Founding 25</a>
   </nav>
 
   <!-- HERO -->
@@ -450,7 +450,7 @@
     <img src="assets/icon-original.jpg" alt="Jobpakt" class="hero-icon">
     <h1>Your business.<br><span class="highlight">On autopilot.</span></h1>
     <p class="hero-sub">Jobpakt is the AI-powered brain that runs your home services business — so you can focus on the work, not the paperwork.</p>
-    <a href="#waitlist" class="hero-cta">Join the Founding 50 →</a>
+    <a href="#waitlist" class="hero-cta">Join the Founding 25 →</a>
   </section>
 
   <!-- PROBLEM -->
@@ -520,11 +520,11 @@
     </blockquote>
   </section>
 
-  <!-- FOUNDING 50 -->
+  <!-- FOUNDING 25 -->
   <section class="waitlist" id="waitlist" style="position: relative;">
-    <div style="display:inline-block; background:var(--orange); color:white; font-size:0.75rem; font-weight:800; letter-spacing:0.1em; padding:0.4rem 1rem; border-radius:50px; margin-bottom:1.5rem; text-transform:uppercase;">⚡ Limited — Founding 50 Program</div>
+    <div style="display:inline-block; background:var(--orange); color:white; font-size:0.75rem; font-weight:800; letter-spacing:0.1em; padding:0.4rem 1rem; border-radius:50px; margin-bottom:1.5rem; text-transform:uppercase;">⚡ Limited — Founding 25 Program</div>
     <h2>Lock in 40% off. Forever.</h2>
-    <p class="subtitle">We're accepting our first 50 contractors into the Founding Member program. You'll get 40% off for life — as long as you stay. No catches.</p>
+    <p class="subtitle">We're accepting our first 25 contractors into the Founding Member program. You'll get 40% off for life — as long as you stay. No catches.</p>
     <div style="display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem;">
       <div style="background:var(--dark-surface); border:1px solid var(--dark-border); border-radius:16px; padding:1.5rem 2rem; min-width:160px; text-align:center;">
         <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.5rem;">Starter</div>
@@ -551,7 +551,7 @@
       <input type="tel" placeholder="(555) 555-5555" id="phoneInput" style="flex:1; min-width:200px; padding:1rem 1.25rem; border-radius:12px; border:1px solid var(--dark-border); background:var(--dark-surface); color:var(--text-primary); font-size:1rem; font-family:inherit; outline:none; transition:border-color 0.2s;">
       <button type="submit">Claim My Spot →</button>
     </form>
-    <p class="waitlist-note">No credit card required. No spam. Just your spot in the Founding 50.</p>
+    <p class="waitlist-note">No credit card required. No spam. Just your spot in the Founding 25.</p>
     <p class="success-message" id="successMsg">🎉 You're on the list! We'll be in touch soon.</p>
   </section>
 
@@ -562,7 +562,7 @@
       <span style="font-weight: 700; font-size: 1.1rem;">JOBPAKT</span>
     </div>
     <div class="footer-links">
-      <a href="mailto:john@jobpakt.com">Contact</a>
+      <a href="mailto:hello@jobpakt.com">Contact</a>
       <a href="https://x.com/jobpakt" target="_blank">X / Twitter</a>
       <a href="https://instagram.com/jobpakt" target="_blank">Instagram</a>
       <a href="https://linkedin.com/company/jobpakt" target="_blank">LinkedIn</a>
@@ -571,7 +571,7 @@
   </footer>
 
   <script>
-    // Waitlist form → formsubmit.co (emails john@jobpakt.com) + Jobpakt platform (dogfooding)
+    // Waitlist form → formsubmit.co (emails hello@jobpakt.com on every signup)
     document.getElementById('waitlistForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value;
@@ -580,8 +580,7 @@
       btn.textContent = 'Submitting...';
       btn.disabled = true;
 
-      // 1. Email notification to John via formsubmit.co
-      const emailNotify = fetch('https://formsubmit.co/ajax/john@jobpakt.com', {
+      fetch('https://formsubmit.co/ajax/hello@jobpakt.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
@@ -590,17 +589,14 @@
           _subject: '🔥 New Jobpakt Waitlist Signup!',
           _template: 'table'
         })
-      }).catch(() => {});
-
-      // 2. Dogfooding: Create lead in Jobpakt platform (Customer Zero)
-      const platformLead = fetch('https://home-services-platform-production.up.railway.app/api/webhooks/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, phone: phone || undefined })
-      }).catch(() => {});
-
-      // Wait for both, show success regardless
-      Promise.allSettled([emailNotify, platformLead]).then(() => {
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('waitlistForm').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      })
+      .catch(() => {
+        // Fallback: show success anyway (email may still go through)
         document.getElementById('waitlistForm').style.display = 'none';
         document.getElementById('successMsg').style.display = 'block';
       });
