@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #1A1A1A;
+  color: #F5F5F5;
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-orange-light;
+  }
+  
+  .glow-orange {
+    box-shadow: 0 0 40px rgba(212, 80, 10, 0.15), 0 0 80px rgba(212, 80, 10, 0.05);
+  }
+}
