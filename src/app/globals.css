@@ -9,16 +9,74 @@ html {
 }
 
 body {
-  background-color: #1A1A1A;
+  background-color: #0D0D0D;
   color: #F5F5F5;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(212, 80, 10, 0.3);
+  color: #fff;
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-orange-light;
   }
-  
+
   .glow-orange {
     box-shadow: 0 0 40px rgba(212, 80, 10, 0.15), 0 0 80px rgba(212, 80, 10, 0.05);
   }
+
+  .glow-orange-strong {
+    box-shadow: 0 0 60px rgba(212, 80, 10, 0.25), 0 0 120px rgba(212, 80, 10, 0.1);
+  }
+
+  /* Premium card surface */
+  .card-surface {
+    @apply bg-brand-gray-900 border border-white/[0.06] rounded-2xl;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-surface-hover {
+    @apply card-surface hover:border-brand-orange/20 transition-all duration-300;
+  }
+
+  .card-surface-hover:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 80, 10, 0.06);
+    transform: translateY(-2px);
+  }
+
+  /* Noise texture overlay for depth */
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Gradient divider line */
+  .gradient-divider {
+    @apply h-px bg-gradient-to-r from-transparent via-brand-orange/20 to-transparent;
+  }
+}
+
+/* Smooth scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0D0D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A2A2A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3A3A3A;
 }
