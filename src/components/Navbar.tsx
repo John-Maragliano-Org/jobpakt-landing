@@ -11,11 +11,11 @@ export default function Navbar() {
             <Image
               src="/logo-icon.jpg"
               alt="JOBPAKT"
-              width={36}
-              height={36}
+              width={44}
+              height={44}
               className="rounded-lg"
             />
-            <span className="text-xl font-bold tracking-tight text-white">
+            <span className="text-2xl font-extrabold tracking-tight text-white">
               JOBPAKT
             </span>
           </div>
