@@ -18,16 +18,16 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-6 leading-[1.05]">
-          Never miss
+          Never miss another job.
           <br />
-          <span className="text-gradient">another job.</span>
+          <span className="text-gradient">And get more of them.</span>
         </h1>
 
         {/* Subheadline */}
         <p className="text-lg sm:text-xl md:text-2xl text-brand-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-          AI-powered lead capture and scheduling for home services contractors.
+          The AI-powered growth engine for home services contractors.
           <br className="hidden sm:block" />
-          Stop losing calls. Start booking more jobs.
+          Capture missed leads. Grow your online presence. Dominate your market.
         </p>
 
         {/* CTA */}

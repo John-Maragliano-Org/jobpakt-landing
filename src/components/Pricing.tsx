@@ -1,48 +1,55 @@
 const plans = [
   {
-    name: "Starter",
+    tier: "Tier 1",
+    name: "Capture",
+    tagline: "Never miss another lead",
     price: "$249",
     founding: "$149",
     period: "/mo CAD",
-    techs: "1–3 techs",
+    techs: "From 1–3 techs",
     features: [
-      "Missed call text-back",
-      "AI lead capture",
-      "Basic scheduling",
-      "Two-way texting",
-      "Email support",
+      "Missed call text-back (60s response)",
+      "AI booking assistant",
+      "Two-way SMS texting",
+      "Automated follow-ups & reminders",
+      "Lead capture dashboard",
+      "Review request automation",
     ],
     highlighted: false,
   },
   {
-    name: "Growth",
+    tier: "Tier 2",
+    name: "Grow",
+    tagline: "Get found. Get more calls.",
     price: "$499",
     founding: "$299",
     period: "/mo CAD",
-    techs: "4–15 techs",
+    techs: "From 1–3 techs",
     features: [
-      "Everything in Starter",
-      "AI appointment booking",
-      "Automated follow-ups",
-      "ROI dashboard",
-      "Priority support",
-      "HCP/Jobber integration",
+      "Everything in Capture",
+      "SEO audit & recommendations",
+      "Google Business optimization",
+      "Website fixes (up to 10 pages/mo)",
+      "Review management & monitoring",
+      "Monthly performance reports",
     ],
     highlighted: true,
   },
   {
-    name: "Scale",
-    price: "$799",
-    founding: "$479",
+    tier: "Tier 3",
+    name: "Dominate",
+    tagline: "Own your market.",
+    price: "$999",
+    founding: "$599",
     period: "/mo CAD",
-    techs: "15–30 techs",
+    techs: "From 1–3 techs",
     features: [
-      "Everything in Growth",
-      "Multi-location support",
-      "Advanced analytics",
-      "Custom workflows",
-      "Dedicated account manager",
-      "API access",
+      "Everything in Grow",
+      "AI outbound lead generation",
+      "Paid ads management",
+      "Competitor monitoring",
+      "Full digital presence management",
+      "Monthly strategy call",
     ],
     highlighted: false,
   },
@@ -57,11 +64,11 @@ export default function Pricing() {
             Pricing
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-            Simple pricing. Serious ROI.
+            Capture. Grow. Dominate.
           </h2>
           <p className="text-brand-gray-400 text-lg mt-4 max-w-2xl mx-auto">
-            One missed call recovered pays for a month of JOBPAKT. Most
-            contractors see ROI in the first week.
+            Each tier adds revenue to your business — not just features.
+            One recovered missed call pays for a month of Capture.
           </p>
         </div>
 
@@ -74,11 +81,11 @@ export default function Pricing() {
             </span>
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">
-            40% off for life.
+            40% off for life — on any tier.
           </h3>
           <p className="text-brand-gray-400">
             The first 25 contractors to join lock in founding pricing — forever.
-            No contracts. Cancel anytime.
+            No contracts. Cancel anytime. All prices CAD.
           </p>
         </div>
 
@@ -97,12 +104,15 @@ export default function Pricing() {
                   MOST POPULAR
                 </div>
               )}
-              <div className="text-brand-gray-400 text-sm font-medium mb-1">
-                {plan.techs}
+              <div className="text-brand-gray-400 text-xs font-medium uppercase tracking-wider mb-1">
+                {plan.tier}
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-white mb-1">
                 {plan.name}
               </h3>
+              <p className="text-brand-gray-400 text-sm mb-4">
+                {plan.tagline}
+              </p>
               <div className="mb-6">
                 <div className="flex items-baseline gap-2">
                   <span className="text-4xl font-black text-brand-orange">
@@ -117,6 +127,9 @@ export default function Pricing() {
                   <span className="text-brand-orange ml-2 font-medium">
                     Founding price
                   </span>
+                </div>
+                <div className="text-brand-gray-500 text-xs mt-1">
+                  {plan.techs} · Scales by team size
                 </div>
               </div>
               <ul className="space-y-3 mb-8">
