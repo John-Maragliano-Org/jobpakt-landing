@@ -25,7 +25,7 @@ export default function Navbar() {
           {/* Logo + Wordmark */}
           <a href="#" className="flex items-center gap-3 group">
             <Image
-              src="/logo-icon.jpg"
+              src="/logo-icon.png"
               alt="JOBPAKT"
               width={48}
               height={48}
@@ -33,16 +33,13 @@ export default function Navbar() {
               priority
             />
             <Image
-              src="/wordmark.jpg"
+              src="/wordmark.webp"
               alt="JOBPAKT"
               width={140}
               height={36}
-              className="rounded hidden sm:block"
+              className="hidden sm:block"
               priority
             />
-            <span className="sm:hidden text-2xl font-black tracking-tight text-white">
-              JOBPAKT
-            </span>
           </a>
 
           {/* CTA */}
